@@ -1,0 +1,42 @@
+@use "variables" as *;
+
+// Title + breadcrumb on the left, action buttons on the right. Wraps on small screens.
+.top-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+
+  @include respond-below("xs-sm") {
+    flex-direction: column;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $gray-b5;
+
+    @include respond-below("sm") {
+      font-size: $font-size-xl;
+    }
+  }
+
+  &__breadcrumb {
+    margin-top: $spacing-xs;
+    font-size: $font-size-sm;
+    color: $gray-b4;
+
+    span + span::before {
+      content: "/";
+      margin: 0 $spacing-xs;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-sm;
+    flex-wrap: wrap;
+  }
+}

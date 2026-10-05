@@ -1,0 +1,82 @@
+// ---------------------------------------------------------------------------
+// Design tokens. Every SCSS file starts with:  @use "variables" as *;
+// Rules come from WM:
+//   WM | HTML development guideline   https://app.notion.com/p/9695262a68b7463db0d750634029da96
+//   WM | Light/Dark Mode Color System https://app.notion.com/p/75711652f115489c9d0800aa76c44da4
+// Colour variable names are colour + code ($gray-b1), never a meaning ($gray-dark).
+// Every light colour has exactly ONE dark colour with the same name (see global.scss).
+// Components never write a hex value. They write $gray-b1, which resolves to a CSS variable
+// that flips between light and dark.
+// ---------------------------------------------------------------------------
+
+@use "sass:map";
+
+// Colours (resolved by the [data-theme] blocks in global.scss)
+$primary-b1: var(--primary-b1); // main action colour
+$primary-b2: var(--primary-b2); // hover / pressed
+$primary-b3: var(--primary-b3); // tint background
+$gray-b1: var(--gray-b1); // page background
+$gray-b2: var(--gray-b2); // card / surface
+$gray-b3: var(--gray-b3); // border
+$gray-b4: var(--gray-b4); // secondary text
+$gray-b5: var(--gray-b5); // primary text
+$white-b1: var(--white-b1);
+$red-b1: var(--red-b1); // error
+$red-b2: var(--red-b2); // error tint
+$green-b1: var(--green-b1); // success
+$green-b2: var(--green-b2); // success tint
+$yellow-b1: var(--yellow-b1); // warning
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+// Radius
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
+
+// Font
+$font-family-base: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-base: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+$font-size-2xl: 24px;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Layout
+$content-max-width: 1440px;
+$topbar-height: 56px;
+
+// Breakpoint ladder from WM (check every screen at all of these; minimum 1920 / 1366 / 768 / 375)
+$breakpoints: (
+  "xxl": 1920px,
+  "xl": 1600px,
+  "lg": 1366px,
+  "md-lg": 1280px,
+  "md": 1024px,
+  "sm-md": 991px,
+  "sm": 768px,
+  "xs-sm": 640px,
+  "xs": 480px,
+  "xxs": 375px,
+);
+
+// Usage:  @include respond-below("sm") { ... }   -> applies at widths <= 768px
+@mixin respond-below($name) {
+  $width: map.get($breakpoints, $name);
+  @if $width == null {
+    @error "Unknown breakpoint `#{$name}`. Use one of: #{map.keys($breakpoints)}";
+  }
+  @media (max-width: $width) {
+    @content;
+  }
+}

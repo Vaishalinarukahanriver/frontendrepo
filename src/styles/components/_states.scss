@@ -1,0 +1,37 @@
+@use "variables" as *;
+
+// Loading / empty / error blocks look the same everywhere.
+.state-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-xl $spacing-md;
+  text-align: center;
+  color: $gray-b4;
+
+  &__icon {
+    font-size: $font-size-2xl;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    color: $gray-b5;
+  }
+
+  &__message {
+    margin: 0;
+    font-size: $font-size-sm;
+    max-width: 480px;
+  }
+
+  &--error {
+    .state-block__icon,
+    .state-block__title {
+      color: $red-b1;
+    }
+  }
+}

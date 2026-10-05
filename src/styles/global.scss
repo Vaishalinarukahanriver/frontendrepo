@@ -1,0 +1,122 @@
+// The ONE stylesheet imported by src/app/layout.tsx. Everything else is a partial pulled in here.
+@use "variables" as *;
+@use "layout/topbar";
+@use "components/top-heading";
+@use "components/states";
+@use "pages/products";
+
+// -- Light theme -------------------------------------------------------------
+:root {
+  --primary-b1: #2563eb;
+  --primary-b2: #1d4ed8;
+  --primary-b3: #dbeafe;
+  --gray-b1: #f5f6f8;
+  --gray-b2: #ffffff;
+  --gray-b3: #e5e7eb;
+  --gray-b4: #6b7280;
+  --gray-b5: #111827;
+  --white-b1: #ffffff;
+  --red-b1: #dc2626;
+  --red-b2: #fee2e2;
+  --green-b1: #15803d;
+  --green-b2: #dcfce7;
+  --yellow-b1: #ca8a04;
+}
+
+// -- Dark theme: the same names, one dark value each ---------------------------
+[data-theme="dark"] {
+  --primary-b1: #60a5fa;
+  --primary-b2: #93c5fd;
+  --primary-b3: #1e3a8a;
+  --gray-b1: #0f172a;
+  --gray-b2: #1e293b;
+  --gray-b3: #334155;
+  --gray-b4: #94a3b8;
+  --gray-b5: #f1f5f9;
+  --white-b1: #0f172a;
+  --red-b1: #f87171;
+  --red-b2: #450a0a;
+  --green-b1: #4ade80;
+  --green-b2: #052e16;
+  --yellow-b1: #facc15;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  color: $gray-b5;
+  background: $gray-b1;
+  // No sideways scrolling, ever. If a table is wider than the screen it scrolls inside its own box.
+  overflow-x: hidden;
+}
+
+a {
+  color: $primary-b1;
+  text-decoration: none;
+}
+
+.page-container {
+  max-width: $content-max-width;
+  margin: 0 auto;
+  padding: $spacing-lg;
+
+  @include respond-below("sm") {
+    padding: $spacing-md;
+  }
+}
+
+.card-surface {
+  background: $gray-b2;
+  border: 1px solid $gray-b3;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+
+  @include respond-below("sm") {
+    padding: $spacing-md;
+  }
+}
+
+// Status pill shared by list and details.
+.status-pill {
+  display: inline-block;
+  padding: 2px $spacing-sm;
+  border-radius: $radius-sm;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+
+  &--active {
+    color: $green-b1;
+    background: $green-b2;
+  }
+
+  &--inactive {
+    color: $gray-b4;
+    background: $gray-b3;
+  }
+}
+
+.p-component {
+  font-family: $font-family-base;
+}
+
+// Make PrimeReact surfaces follow the dark tokens (the theme CSS ships its own light palette).
+[data-theme="dark"] {
+  .p-datatable .p-datatable-thead > tr > th,
+  .p-datatable .p-datatable-tbody > tr,
+  .p-paginator,
+  .p-inputtext,
+  .p-dropdown,
+  .p-inputtextarea,
+  .p-inputnumber-input {
+    background: $gray-b2;
+    color: $gray-b5;
+    border-color: $gray-b3;
+  }
+}

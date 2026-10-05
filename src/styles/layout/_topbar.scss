@@ -1,0 +1,37 @@
+@use "variables" as *;
+
+.app-topbar {
+  height: $topbar-height;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 $spacing-lg;
+  background: $gray-b2;
+  border-bottom: 1px solid $gray-b3;
+
+  @include respond-below("sm") {
+    padding: 0 $spacing-md;
+  }
+
+  &__brand {
+    font-weight: $font-weight-bold;
+    font-size: $font-size-lg;
+    color: $gray-b5;
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+  }
+
+  &__link {
+    color: $gray-b4;
+    font-size: $font-size-sm;
+
+    &--active {
+      color: $primary-b1;
+      font-weight: $font-weight-semibold;
+    }
+  }
+}

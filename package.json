@@ -1,0 +1,44 @@
+{
+  "name": "divii-frontend-starter",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Divii frontend starter for the AI Frontend Training homework: Next.js 15 + React 19 + TypeScript + PrimeReact 10 + SCSS, WM folder structure, Playwright, Claude Code skills.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "type-check": "tsc --noEmit",
+    "check": "npm run type-check && npm run lint && npm run build",
+    "mock-api": "node mock-api/server.mjs",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:mutations": "cross-env E2E_ALLOW_MUTATIONS=1 playwright test --grep @mutation",
+    "test:e2e:report": "playwright show-report"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.90.0",
+    "axios": "^1.12.0",
+    "dayjs": "^1.11.19",
+    "next": "^15.5.0",
+    "primeflex": "^3.3.1",
+    "primeicons": "^7.0.0",
+    "primereact": "^10.9.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-hook-form": "^7.65.0",
+    "sass": "^1.93.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@playwright/test": "^1.56.0",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "cross-env": "^10.1.0",
+    "eslint": "^9",
+    "eslint-config-next": "^15.5.0",
+    "typescript": "^5"
+  }
+}

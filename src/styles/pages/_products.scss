@@ -1,0 +1,154 @@
+@use "variables" as *;
+
+// Everything on the /products/* screens. One partial per page area.
+.products-filters {
+  display: grid;
+  grid-template-columns: minmax(200px, 2fr) repeat(2, minmax(140px, 1fr));
+  gap: $spacing-md;
+  margin-bottom: $spacing-md;
+
+  @include respond-below("sm") {
+    grid-template-columns: 1fr;
+  }
+
+  .p-inputtext,
+  .p-dropdown {
+    width: 100%;
+  }
+}
+
+.products-table {
+  // The table scrolls inside its own box; the page never scrolls sideways.
+  .p-datatable-wrapper {
+    overflow-x: auto;
+  }
+
+  .p-datatable-table {
+    min-width: 760px;
+  }
+
+  &__name {
+    font-weight: $font-weight-medium;
+    color: $gray-b5;
+  }
+
+  &__number {
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-xs;
+    justify-content: flex-end;
+  }
+
+  &__fetching {
+    margin-top: $spacing-sm;
+    font-size: $font-size-xs;
+    color: $gray-b4;
+  }
+}
+
+.product-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $spacing-md $spacing-lg;
+  max-width: 880px;
+
+  @include respond-below("sm") {
+    grid-template-columns: 1fr;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+
+    &--full {
+      grid-column: 1 / -1;
+    }
+
+    .p-inputtext,
+    .p-dropdown,
+    .p-inputnumber,
+    .p-inputtextarea {
+      width: 100%;
+    }
+  }
+
+  &__label {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $gray-b5;
+
+    &--required::after {
+      content: " *";
+      color: $red-b1;
+    }
+  }
+
+  &__error {
+    font-size: $font-size-xs;
+    color: $red-b1;
+  }
+
+  &__server-error {
+    grid-column: 1 / -1;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $radius-md;
+    background: $red-b2;
+    color: $red-b1;
+    font-size: $font-size-sm;
+  }
+
+  &__actions {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: $spacing-sm;
+    justify-content: flex-end;
+
+    @include respond-below("xs") {
+      flex-direction: column-reverse;
+
+      .p-button {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.product-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $spacing-md $spacing-lg;
+  max-width: 880px;
+  margin: 0;
+
+  @include respond-below("sm") {
+    grid-template-columns: 1fr;
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+
+    &--full {
+      grid-column: 1 / -1;
+    }
+  }
+
+  &__label {
+    font-size: $font-size-xs;
+    color: $gray-b4;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  &__value {
+    margin: 0;
+    font-size: $font-size-base;
+    color: $gray-b5;
+    overflow-wrap: anywhere;
+  }
+}
